@@ -70,7 +70,7 @@ namespace IsTakipYonetimSistemi.View
                     {
                         var departman = DB_Connection.db.Departmanlar.Find(c.Departman_Id);
                         var pozisyon = DB_Connection.db.Pozisyonlar.Find(c.Pozisyon_Id);
-                        Personel_Listbox.Items.Add($"PNo: {c.Id} - Ad: {c.Ad} {c.Soyad}" +
+                        Personel_Listbox.Items.Add($"PNo: {c.Id} - Ad: {c.Ad} {c.Soyad} - " +
                             $"Departman: {departman.Ad} - Pozisyon: {pozisyon.Ad}");
                     }
 
