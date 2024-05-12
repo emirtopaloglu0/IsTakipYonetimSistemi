@@ -30,10 +30,10 @@
         {
             this.CreateProject_Btn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.ProjectName_Richbox = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.ProjectDescp_Richbox = new System.Windows.Forms.RichTextBox();
+            this.EndDate_Datetime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.AddStaff_Btn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@
             this.CreateProject_Btn.Location = new System.Drawing.Point(413, 594);
             this.CreateProject_Btn.Name = "CreateProject_Btn";
             this.CreateProject_Btn.Size = new System.Drawing.Size(249, 58);
-            this.CreateProject_Btn.TabIndex = 21;
+            this.CreateProject_Btn.TabIndex = 6;
             this.CreateProject_Btn.Text = "Projeyi Oluştur";
             this.CreateProject_Btn.UseVisualStyleBackColor = false;
             this.CreateProject_Btn.Click += new System.EventHandler(this.CreateProject_Btn_Click);
@@ -70,15 +70,15 @@
             this.label1.Text = "Proje Adı";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // richTextBox1
+            // ProjectName_Richbox
             // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox1.Font = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.richTextBox1.Location = new System.Drawing.Point(413, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(249, 59);
-            this.richTextBox1.TabIndex = 24;
-            this.richTextBox1.Text = "";
+            this.ProjectName_Richbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ProjectName_Richbox.Font = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ProjectName_Richbox.Location = new System.Drawing.Point(413, 3);
+            this.ProjectName_Richbox.Name = "ProjectName_Richbox";
+            this.ProjectName_Richbox.Size = new System.Drawing.Size(249, 59);
+            this.ProjectName_Richbox.TabIndex = 1;
+            this.ProjectName_Richbox.Text = "";
             // 
             // label2
             // 
@@ -92,25 +92,25 @@
             this.label2.Text = "Proje Açıklaması";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // richTextBox2
+            // ProjectDescp_Richbox
             // 
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox2.Font = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.richTextBox2.Location = new System.Drawing.Point(413, 88);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(249, 59);
-            this.richTextBox2.TabIndex = 24;
-            this.richTextBox2.Text = "";
+            this.ProjectDescp_Richbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ProjectDescp_Richbox.Font = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ProjectDescp_Richbox.Location = new System.Drawing.Point(413, 88);
+            this.ProjectDescp_Richbox.Name = "ProjectDescp_Richbox";
+            this.ProjectDescp_Richbox.Size = new System.Drawing.Size(249, 59);
+            this.ProjectDescp_Richbox.TabIndex = 2;
+            this.ProjectDescp_Richbox.Text = "";
             // 
-            // dateTimePicker1
+            // EndDate_Datetime
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(413, 192);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(249, 21);
-            this.dateTimePicker1.TabIndex = 25;
-            this.dateTimePicker1.Value = new System.DateTime(2024, 5, 12, 0, 0, 0, 0);
+            this.EndDate_Datetime.CalendarFont = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.EndDate_Datetime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.EndDate_Datetime.Location = new System.Drawing.Point(413, 192);
+            this.EndDate_Datetime.Name = "EndDate_Datetime";
+            this.EndDate_Datetime.Size = new System.Drawing.Size(249, 21);
+            this.EndDate_Datetime.TabIndex = 3;
+            this.EndDate_Datetime.Value = new System.DateTime(2024, 5, 12, 0, 0, 0, 0);
             // 
             // label3
             // 
@@ -134,7 +134,7 @@
             this.AddStaff_Btn.Location = new System.Drawing.Point(413, 271);
             this.AddStaff_Btn.Name = "AddStaff_Btn";
             this.AddStaff_Btn.Size = new System.Drawing.Size(249, 58);
-            this.AddStaff_Btn.TabIndex = 21;
+            this.AddStaff_Btn.TabIndex = 4;
             this.AddStaff_Btn.Text = "Projeye Personel Ekle";
             this.AddStaff_Btn.UseVisualStyleBackColor = false;
             this.AddStaff_Btn.Click += new System.EventHandler(this.AddStaff_Btn_Click);
@@ -182,18 +182,18 @@
             this.Personel_Listbox.Location = new System.Drawing.Point(305, 359);
             this.Personel_Listbox.Name = "Personel_Listbox";
             this.Personel_Listbox.Size = new System.Drawing.Size(464, 144);
-            this.Personel_Listbox.TabIndex = 26;
+            this.Personel_Listbox.TabIndex = 5;
             // 
             // CreateProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.Personel_Listbox);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.EndDate_Datetime);
+            this.Controls.Add(this.ProjectDescp_Richbox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.ProjectName_Richbox);
             this.Controls.Add(this.Calisan_Label);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
@@ -214,10 +214,10 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button CreateProject_Btn;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox ProjectName_Richbox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.RichTextBox ProjectDescp_Richbox;
+        private System.Windows.Forms.DateTimePicker EndDate_Datetime;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button AddStaff_Btn;
         private System.Windows.Forms.Label label4;

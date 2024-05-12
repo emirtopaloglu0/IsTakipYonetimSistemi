@@ -16,5 +16,20 @@ namespace IsTakipYonetimSistemi.Mesajlar
         {
             res = MessageBox.Show("Çıkmak İstediğinze Emin Misiniz?", "Dikkat!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
+
+        internal void IlerlemeKayit()
+        {
+            res = MessageBox.Show("İlerlemeyi Kaydetmek İstediğinize Emin Misiniz?", "Dikkat!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        internal void ProjeBitiyor()
+        {
+            res = MessageBox.Show("Projeyi Bitirmek İstediğinize Emin Misiniz?", "Dikkat!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        internal void ProjeOlustur()
+        {
+            res = MessageBox.Show("Projeyi Oluşturmak İstediğinize Emin Misiniz?", "Dikkat!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
     }
 }

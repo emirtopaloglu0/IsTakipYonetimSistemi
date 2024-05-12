@@ -1,4 +1,5 @@
 ﻿using IsTakipYonetimSistemi.Mesajlar;
+using IsTakipYonetimSistemi.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,12 +31,13 @@ namespace IsTakipYonetimSistemi
             }
         }
 
-        internal void ShowProjects()
+        internal void ShowProjectsPage()
         {
             showProjects1.Show();
             createProject1.Hide();
+            showProjects1.LoadData(true);
         }
-        internal void ShowCreateProject()
+        internal void ShowCreateProjectPage()
         {
             showProjects1.Hide();
             createProject1.Show();
@@ -43,17 +45,17 @@ namespace IsTakipYonetimSistemi
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ShowProjects();
+            ShowProjectsPage();
         }
 
         private void ShowCreateProject(object sender, EventArgs e)
         {
-            ShowCreateProject();
+            ShowCreateProjectPage();
         }
 
         private void ShowProjects_Btn_Click(object sender, EventArgs e)
         {
-            ShowProjects();
+            ShowProjectsPage();
         }
     }
 }

@@ -23,8 +23,6 @@ namespace IsTakipYonetimSistemi.View
             instance = this;
         }
 
-        //PERSONELİN BAŞKA AKTİF BİR PROJEDE OLUP OLMADIĞINI KONTROL ETMELİYİZ.
-
         internal void LoadData(bool isDepartment, int dep_Id, bool isPosition, string pos_Ad)
         {
             try
@@ -40,7 +38,11 @@ namespace IsTakipYonetimSistemi.View
                     {
                         if (item.Calisan_Id == c.Id)
                         {
-                            goto devam;
+                            var proje = DB_Connection.db.Proejeler.Find(item.Proje_Id);
+
+                            if(proje.IsDone == false)
+                                goto devam;
+
                         }
                     }
 
@@ -51,7 +53,7 @@ namespace IsTakipYonetimSistemi.View
                             var departman1 = DB_Connection.db.Departmanlar.Find(c.Departman_Id);
                             var pozisyon1 = DB_Connection.db.Pozisyonlar.Find(c.Pozisyon_Id);
                             Personel_Listbox.Items.Add($"PNo: {c.Id} - Ad: {c.Ad} {c.Soyad} - " +
-                                $"Departman: {departman1.Ad} - Pozisyon: {pozisyon1.Ad}");
+                                $"Pozisyon: {pozisyon1.Ad}");
                         }
                     }
                     else if (isPosition)
@@ -61,15 +63,14 @@ namespace IsTakipYonetimSistemi.View
                         {
                             var departman1 = DB_Connection.db.Departmanlar.Find(c.Departman_Id);
                             var pozisyon1 = DB_Connection.db.Pozisyonlar.Find(c.Pozisyon_Id);
-                            Personel_Listbox.Items.Add($"PNo: {c.Id} - Ad: {c.Ad} {c.Soyad} - " +
-                                $"Departman: {departman1.Ad} - Pozisyon: {pozisyon1.Ad}");
+                            Personel_Listbox.Items.Add($"PNo: {c.Id} - Ad: {c.Ad} {c.Soyad}");
                         }
                     }
                     else
                     {
                         var departman = DB_Connection.db.Departmanlar.Find(c.Departman_Id);
                         var pozisyon = DB_Connection.db.Pozisyonlar.Find(c.Pozisyon_Id);
-                        Personel_Listbox.Items.Add($"PNo: {c.Id} - Ad: {c.Ad} {c.Soyad} - " +
+                        Personel_Listbox.Items.Add($"PNo: {c.Id} - Ad: {c.Ad} {c.Soyad}" +
                             $"Departman: {departman.Ad} - Pozisyon: {pozisyon.Ad}");
                     }
 
@@ -120,7 +121,7 @@ namespace IsTakipYonetimSistemi.View
                                 return;
                             }
                         }
-                                                
+
                     }
 
                     var p_Id = Int32.Parse(personel[1]);
@@ -143,8 +144,6 @@ namespace IsTakipYonetimSistemi.View
                 HataMesajlari.CatchError(ex);
             }
 
-            //çalışanın görevinin otomatik pozisyonu
-
         }
 
         private void Departman_Combobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,8 +155,6 @@ namespace IsTakipYonetimSistemi.View
                 foreach (var item in pozisyonlar)
                 {
                     Pozisyon_Combobox.Items.Add(item.Ad.Trim());
-
-                    //personeller departamana göre şekillenecek
                 }
 
                 LoadData(true, Departman_Combobox.SelectedIndex + 1, false, string.Empty);
