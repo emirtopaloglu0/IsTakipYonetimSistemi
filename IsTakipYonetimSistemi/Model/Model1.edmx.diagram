@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0f0ee090d65540ffa7b7aa3df5dffaf5" Name="Diagram1">
+        <EntityTypeShape EntityType="IsTakipModel.Calisanlar" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsTakipModel.Departmanlar" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsTakipModel.Ilerlemeler" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsTakipModel.Pozisyonlar" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsTakipModel.Proejeler" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsTakipModel.Proje_Calisanlari" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsTakipModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="IsTakipModel.FK_Calisanlar_Departmanlar" ManuallyRouted="false" />
+        <AssociationConnector Association="IsTakipModel.FK_Calisanlar_Pozisyonlar" ManuallyRouted="false" />
+        <AssociationConnector Association="IsTakipModel.FK_Proje_Calisanlari_Calisanlar" ManuallyRouted="false" />
+        <AssociationConnector Association="IsTakipModel.FK_Ilerlemeler_Proejeler" ManuallyRouted="false" />
+        <AssociationConnector Association="IsTakipModel.FK_Proje_Calisanlari_Proejeler" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
