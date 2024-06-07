@@ -1,4 +1,5 @@
-﻿using IsTakipYonetimSistemi.Mesajlar;
+﻿using IsTakipYonetimSistemi.Class.Projects;
+using IsTakipYonetimSistemi.Mesajlar;
 using IsTakipYonetimSistemi.View;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace IsTakipYonetimSistemi
         {
             showProjects1.Show();
             createProject1.Hide();
-            showProjects1.LoadData(true);
+            showProjects1.LoadData(CallProjects.OngoingProjects());
         }
         internal void ShowCreateProjectPage()
         {

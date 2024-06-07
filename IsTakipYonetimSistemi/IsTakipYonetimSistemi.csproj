@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Connection\DB_Connection.cs" />
+    <Compile Include="Class\Projects\CallProjects.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

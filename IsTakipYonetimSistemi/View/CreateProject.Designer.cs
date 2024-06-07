@@ -105,10 +105,11 @@
             // EndDate_Datetime
             // 
             this.EndDate_Datetime.CalendarFont = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.EndDate_Datetime.Font = new System.Drawing.Font("Figtree", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.EndDate_Datetime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.EndDate_Datetime.Location = new System.Drawing.Point(413, 192);
+            this.EndDate_Datetime.Location = new System.Drawing.Point(413, 188);
             this.EndDate_Datetime.Name = "EndDate_Datetime";
-            this.EndDate_Datetime.Size = new System.Drawing.Size(249, 21);
+            this.EndDate_Datetime.Size = new System.Drawing.Size(249, 27);
             this.EndDate_Datetime.TabIndex = 3;
             this.EndDate_Datetime.Value = new System.DateTime(2024, 5, 12, 0, 0, 0, 0);
             // 

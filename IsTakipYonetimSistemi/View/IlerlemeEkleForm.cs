@@ -1,10 +1,12 @@
 ﻿using IsTakipYonetimSistemi.Class;
+using IsTakipYonetimSistemi.Class.Projects;
 using IsTakipYonetimSistemi.Mesajlar;
 using IsTakipYonetimSistemi.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,47 +25,55 @@ namespace IsTakipYonetimSistemi.View
             instance = this;
         }
 
+        internal Proejeler GetProject()
+        {
+            return DB_Connection.db.Proejeler.Find(proje_Id);
+        }
+
+        internal List<Ilerlemeler> GetProgressList()
+        {
+            var proje = GetProject();
+            return DB_Connection.db.Ilerlemeler.Where(x => x.Proje_Id == proje.Id).ToList();
+        }
+
 
 
         internal void LoadData()
         {
-            
             Progress_Listbox.Items.Clear();
 
-            var proje = DB_Connection.db.Proejeler.Find(proje_Id);
+            var progresses = GetProgressList();
+            var project = GetProject();
 
-            var progress = DB_Connection.db.Ilerlemeler.Where(x => x.Proje_Id == proje.Id).ToList();
-
-            if ((proje.Ilerleme == 100))
+            if ((project.Ilerleme == 100))
             {
                 Ilerleme_Textbox.Enabled = false;
                 IlerlemeAciklama_Richbox.Enabled = false;
                 AddProgress_Btn.Enabled = false;
             }
 
-            Progress_Listbox.Items.Add($"Proje: {proje.Ad} - Açıklama: {proje.Aciklama}");
+            Progress_Listbox.Items.Add($"Proje: {project.Ad}");
+            Progress_Listbox.Items.Add($"Açıklama: {project.Aciklama}");
 
-            if (progress.Count > 0)
-            {
-                foreach (var item in progress)
-                {
-                    Progress_Listbox.Items.Add($"İlerleme: %{item.Ilerleme_Yuzdesi} - Açıklama: {item.Aciklama}");
-                    progressBar1.Value = item.Ilerleme_Yuzdesi;
-                }
-            }
-            else
+            if (progresses.Count <= 0)
             {
                 Progress_Listbox.Items.Add("Şu Anda Projede Hiçbir İlerleme Bulunmamaktadır.");
                 progressBar1.Value = 0;
+                return;
             }
 
-
-
+            foreach (var progress in progresses)
+            {
+                Progress_Listbox.Items.
+                    Add($"İlerleme: %{progress.Ilerleme_Yuzdesi} - Açıklama: {progress.Aciklama}");
+                progressBar1.Value = progress.Ilerleme_Yuzdesi;
+            }
         }
 
         private void Close_Btn_Click(object sender, EventArgs e)
         {
-            ShowProjects.instance.LoadData(true);
+
+            ShowProjects.instance.LoadData(CallProjects.OngoingProjects());
             Close();
         }
 
@@ -89,7 +99,7 @@ namespace IsTakipYonetimSistemi.View
                 devam:
                     if (SoruMesajlari.instance.res == DialogResult.Yes)
                     {
-                        
+
                         var progress = DB_Connection.db.Ilerlemeler.Where(x => x.Proje_Id == proje_Id).ToList();
 
                         foreach (var item in progress)

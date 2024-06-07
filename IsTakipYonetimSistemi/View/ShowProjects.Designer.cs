@@ -34,6 +34,7 @@
             this.ShowAssignment_Btn = new System.Windows.Forms.Button();
             this.AddProgress_Btn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ProjelerPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,9 +45,9 @@
             this.ShowFinished_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShowFinished_Btn.Font = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ShowFinished_Btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ShowFinished_Btn.Location = new System.Drawing.Point(549, 3);
+            this.ShowFinished_Btn.Location = new System.Drawing.Point(173, 26);
             this.ShowFinished_Btn.Name = "ShowFinished_Btn";
-            this.ShowFinished_Btn.Size = new System.Drawing.Size(175, 108);
+            this.ShowFinished_Btn.Size = new System.Drawing.Size(175, 63);
             this.ShowFinished_Btn.TabIndex = 20;
             this.ShowFinished_Btn.Text = "Bitmiş Projeleri Göster";
             this.ShowFinished_Btn.UseVisualStyleBackColor = false;
@@ -59,9 +60,9 @@
             this.ShowContinuing_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShowContinuing_Btn.Font = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ShowContinuing_Btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ShowContinuing_Btn.Location = new System.Drawing.Point(730, 3);
+            this.ShowContinuing_Btn.Location = new System.Drawing.Point(542, 26);
             this.ShowContinuing_Btn.Name = "ShowContinuing_Btn";
-            this.ShowContinuing_Btn.Size = new System.Drawing.Size(175, 108);
+            this.ShowContinuing_Btn.Size = new System.Drawing.Size(175, 63);
             this.ShowContinuing_Btn.TabIndex = 20;
             this.ShowContinuing_Btn.Text = "Devam Eden Projeleri Göster";
             this.ShowContinuing_Btn.UseVisualStyleBackColor = false;
@@ -88,10 +89,11 @@
             this.ShowAssignment_Btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ShowAssignment_Btn.Location = new System.Drawing.Point(4, 3);
             this.ShowAssignment_Btn.Name = "ShowAssignment_Btn";
-            this.ShowAssignment_Btn.Size = new System.Drawing.Size(184, 108);
+            this.ShowAssignment_Btn.Size = new System.Drawing.Size(14, 21);
             this.ShowAssignment_Btn.TabIndex = 20;
             this.ShowAssignment_Btn.Text = "Görevlendirmeler";
             this.ShowAssignment_Btn.UseVisualStyleBackColor = false;
+            this.ShowAssignment_Btn.Visible = false;
             this.ShowAssignment_Btn.Click += new System.EventHandler(this.ShowAssignment_Btn_Click);
             // 
             // AddProgress_Btn
@@ -101,12 +103,13 @@
             this.AddProgress_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddProgress_Btn.Font = new System.Drawing.Font("Figtree", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.AddProgress_Btn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.AddProgress_Btn.Location = new System.Drawing.Point(194, 3);
+            this.AddProgress_Btn.Location = new System.Drawing.Point(24, 3);
             this.AddProgress_Btn.Name = "AddProgress_Btn";
-            this.AddProgress_Btn.Size = new System.Drawing.Size(184, 108);
+            this.AddProgress_Btn.Size = new System.Drawing.Size(25, 21);
             this.AddProgress_Btn.TabIndex = 20;
             this.AddProgress_Btn.Text = "İlerleme Ekle";
             this.AddProgress_Btn.UseVisualStyleBackColor = false;
+            this.AddProgress_Btn.Visible = false;
             this.AddProgress_Btn.Click += new System.EventHandler(this.AddProgress_Btn_Click);
             // 
             // pictureBox1
@@ -119,10 +122,19 @@
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
+            // ProjelerPanel
+            // 
+            this.ProjelerPanel.AutoScroll = true;
+            this.ProjelerPanel.Location = new System.Drawing.Point(4, 117);
+            this.ProjelerPanel.Name = "ProjelerPanel";
+            this.ProjelerPanel.Size = new System.Drawing.Size(1022, 533);
+            this.ProjelerPanel.TabIndex = 22;
+            // 
             // ShowProjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ProjelerPanel);
             this.Controls.Add(this.Projeler_Listbox);
             this.Controls.Add(this.ShowContinuing_Btn);
             this.Controls.Add(this.AddProgress_Btn);
@@ -145,5 +157,6 @@
         private System.Windows.Forms.ListBox Projeler_Listbox;
         private System.Windows.Forms.Button ShowAssignment_Btn;
         private System.Windows.Forms.Button AddProgress_Btn;
+        private System.Windows.Forms.Panel ProjelerPanel;
     }
 }
