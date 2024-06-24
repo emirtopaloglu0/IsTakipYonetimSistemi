@@ -20,7 +20,7 @@ namespace IsTakipYonetimSistemi.View
         //PERSONELİN BAŞKA AKTİF BİR PROJEDE OLUP OLMADIĞINI KONTROL ETMELİYİZ.
 
         public static CreateProject instance = new CreateProject();
-        public List<int> calisanlar = new List<int>();
+        public List<int> calisanlarList = new List<int>();
 
 
         public CreateProject()
@@ -31,89 +31,103 @@ namespace IsTakipYonetimSistemi.View
 
         private void AddStaff_Btn_Click(object sender, EventArgs e)
         {
-            PersonelEkleForm f = new PersonelEkleForm();
+            PersonelEkleForm personelForm = new PersonelEkleForm();
             PersonelEkleForm.instance.LoadData(false, 0, false, string.Empty);
             PersonelEkleForm.instance.LoadDepartmanData();
-            f.ShowDialog();
+            personelForm.ShowDialog();
         }
-
 
         internal void CalculateStaff()
         {
             try
             {
-                Calisan_Label.Text = calisanlar.Count.ToString();
+                Calisan_Label.Text = calisanlarList.Count.ToString();
                 Personel_Listbox.Items.Clear();
-                if (calisanlar.Count > 0)
+                if (calisanlarList.Count > 0)
                 {
-                    foreach (var item in calisanlar)
+                    foreach (var item in calisanlarList)
                     {
                         var calisan = DB_Connection.db.Calisanlar.Find(item);
                         var pozisyon = DB_Connection.db.Pozisyonlar.Find(calisan.Pozisyon_Id);
                         Personel_Listbox.Items.Add($"Ad: {calisan.Ad} {calisan.Soyad} - Pozisyon: {pozisyon.Ad}");
                     }
                 }
-
             }
-            catch
+            catch (Exception ex)
             {
-
+                HataMesajlari.CatchError(ex);
             }
         }
 
         private void CreateProject_Btn_Click(object sender, EventArgs e)
         {
+            SoruMesajlari.instance.ProjeOlustur();
+            if (SoruMesajlari.instance.res == DialogResult.No)
+                return;
             try
             {
-                SoruMesajlari.instance.ProjeOlustur();
-                if (SoruMesajlari.instance.res == DialogResult.No)
-                    return;
+                string projectName = ProjectName_Richbox.Text.Trim();
+                string projectDesc = ProjectDescp_Richbox.Text.Trim();
+                var projectEndDate = EndDate_Datetime.Value;
 
-                if (ProjectName_Richbox.Text != string.Empty && ProjectDescp_Richbox.Text != string.Empty &&
-                    EndDate_Datetime.Value > DateTime.Now && calisanlar.Count > 0)
+                if (projectName == string.Empty && projectDesc == string.Empty &&
+                    projectEndDate < DateTime.Now && calisanlarList.Count <= 0)
                 {
-                    Proejeler proje = new Proejeler();
-                    proje.Ad = ProjectName_Richbox.Text.Trim();
-                    proje.Aciklama = ProjectDescp_Richbox.Text.Trim();
-                    proje.Ilerleme = 0;
-                    proje.Baslangic_Tarihi = DateTime.Now;
-                    proje.Bitis_Tarihi = EndDate_Datetime.Value;
-                    proje.IsDone = false;
-
-                    DB_Connection.db.Proejeler.Add(proje);
-                    DB_Connection.db.SaveChanges();
-
-                    var prj = DB_Connection.db.Proejeler.FirstOrDefault(x => x.Ad == ProjectName_Richbox.Text.Trim() && x.IsDone == false);
-
-                    Proje_Calisanlari proje_ = new Proje_Calisanlari();
-                    foreach (var item in calisanlar)
-                    {
-                        var calisan = DB_Connection.db.Calisanlar.Find(item);
-                        var pozs = DB_Connection.db.Pozisyonlar.Find(calisan.Pozisyon_Id);
-                        proje_.Calisan_Id = item;
-                        proje_.Proje_Id = prj.Id;
-                        proje_.Calisan_Gorev = pozs.Ad;
-                        DB_Connection.db.Proje_Calisanlari.Add(proje_);
-                        DB_Connection.db.SaveChanges();
-                    }
-
-
-                    BasariliMesajlar.ProjeOlusturuldu();
-                    ProjectName_Richbox.Text = string.Empty;
-                    ProjectDescp_Richbox.Text = string.Empty;
-                    EndDate_Datetime.Value = DateTime.Now;
-                    calisanlar.Clear();
-                    Personel_Listbox.Items.Clear();
-                    Calisan_Label.Text = "0";
-
-                }
-                else
                     HataMesajlari.KontrolEdiniz();
-            }
-            catch
-            {
+                    return;
+                }
 
+                AddProjectToDb(projectName, projectDesc, projectEndDate);
+                AddProjectPersonelsToDb(projectName, projectDesc);
+                BasariliMesajlar.ProjeOlusturuldu();
+
+                ProjectName_Richbox.Text = string.Empty;
+                ProjectDescp_Richbox.Text = string.Empty;
+                EndDate_Datetime.Value = DateTime.Now;
+                calisanlarList.Clear();
+                Personel_Listbox.Items.Clear();
+                Calisan_Label.Text = "0";
+            }
+            catch (Exception ex)
+            {
+                HataMesajlari.CatchError(ex);
             }
         }
+        
+        private static void AddProjectToDb(string projectName, string projectDesc, DateTime projectEndDate)
+        {
+            Proejeler proje = new Proejeler();
+            proje.Ad = projectName;
+            proje.Aciklama = projectDesc;
+            proje.Ilerleme = 0;
+            proje.Baslangic_Tarihi = DateTime.Now;
+            proje.Bitis_Tarihi = projectEndDate;
+            proje.IsDone = false;
+
+            DB_Connection.db.Proejeler.Add(proje);
+            DB_Connection.db.SaveChanges();
+        }
+
+        private void AddProjectPersonelsToDb(string projectName, string projectDesc)
+        {
+            var createdProject = DB_Connection.db.Proejeler.
+                FirstOrDefault
+                (x => (x.Ad == projectName && x.Aciklama == projectDesc) && x.IsDone == false);
+
+            Proje_Calisanlari projeCalisanlari = new Proje_Calisanlari();
+            foreach (var calisanItem in calisanlarList)
+            {
+                var calisan = DB_Connection.db.Calisanlar.Find(calisanItem);
+                var pozs = DB_Connection.db.Pozisyonlar.Find(calisan.Pozisyon_Id);
+
+                projeCalisanlari.Calisan_Id = calisanItem;
+                projeCalisanlari.Proje_Id = createdProject.Id;
+                projeCalisanlari.Calisan_Gorev = pozs.Ad;
+
+                DB_Connection.db.Proje_Calisanlari.Add(projeCalisanlari);
+                DB_Connection.db.SaveChanges();
+            }
+        }
+
     }
 }

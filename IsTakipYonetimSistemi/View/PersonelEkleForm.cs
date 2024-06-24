@@ -125,7 +125,7 @@ namespace IsTakipYonetimSistemi.View
                     }
 
                     var p_Id = Int32.Parse(personel[1]);
-                    CreateProject.instance.calisanlar.Add(p_Id);
+                    CreateProject.instance.calisanlarList.Add(p_Id);
 
                     var c = DB_Connection.db.Calisanlar.Find(p_Id);
 
@@ -202,7 +202,7 @@ namespace IsTakipYonetimSistemi.View
         private void ClearStaff_Btn_Click(object sender, EventArgs e)
         {
             Projedekiler_Listbox.Items.Clear();
-            CreateProject.instance.calisanlar.Clear();
+            CreateProject.instance.calisanlarList.Clear();
         }
 
         private void RemoveStaff_Btn_Click(object sender, EventArgs e)
@@ -212,7 +212,7 @@ namespace IsTakipYonetimSistemi.View
                 var projedekiler = Projedekiler_Listbox.SelectedItem.ToString().Split(':', '-');
 
                 Projedekiler_Listbox.Items.Remove(Projedekiler_Listbox.SelectedIndex);
-                CreateProject.instance.calisanlar.Remove(Int32.Parse(projedekiler[1]));
+                CreateProject.instance.calisanlarList.Remove(Int32.Parse(projedekiler[1]));
             }
             else
                 HataMesajlari.PersonelSeciniz();
